@@ -1,0 +1,33 @@
+﻿#===========================================================================================
+# ENGLISH (CURLY) QUOTATION SYSTEM--REMOVE COMMENTS TO ACTIVATE ENGLISH QUOTATION PROCESSING
+#===========================================================================================
+
+#      CONVERT ANGLED QUOTES TO ENGLISH (CURLY) QUOTES
+#      -------------------------------------------------------------------------------
+   '<< *<'               >    '\u201c \u2018' # Use nested open double and single curly quotes
+                                                   #   (non-breaking thin space between)
+   '<<'                  >    '\u201c'             # Use double open curly quotes
+   '<'                   >    '\u2018'             # Use single open curly quotes 
+   '> *>>'               >    '\u2019 \u201d' # Use nested close double and single curly quotes
+                                                   #   (non-breaking thin space between)
+   '>>'                  >    '\u201d'             # Use double close curly quotes
+   '>'                   >    '\u2019'             # Use single close curly quotes
+
+#      CONVERT STANDARD ASCII QUOTES TO ENGLISH (CURLY) QUOTES
+#      -------------------------------------------------------------------------------
+#   "``"                  >    '\u201c'          # use double open  curly quotes
+#   "`"                   >    '\u2018'          # use single open  curly quotes
+#   '"'                   >    '\u201d'          # use double close curly quotes
+#   "''"                  >    '\u201d'          # use double close curly quotes
+#   "'"                   >    '\u2019'          # use double close curly quotes
+
+#     REPLACE NORMAL SPACES BETWEEN NESTED QUOTES WITH THIN SPACES
+#     OR INSERT A THIN SPACE IF THE NORMAL SPACE IS MISSING
+#     -------------------------------------------------------------------------------
+#   '(\u201c) *(\u2018)'  >    '\1\u2009\2'     # Place non-breaking thin space between
+#   '(\u2018) *(\u201c)'  >    '\1\u2009\2'     #   nested open quote marks
+#   '(\u2019) *(\u201d)'  >    '\1\u2009\2'     # Place non-breaking thin space between
+#   '(\u201d) *(\u2019)'  >    '\1\u2009\2'     #   nested close quote marks
+
+# DISPLAY A GLOSSARY WORD WITH A PRECEEDING ASTERIX
+    '\\w (.*?)(\|.*?)?\\w\*'    >   '*\1'

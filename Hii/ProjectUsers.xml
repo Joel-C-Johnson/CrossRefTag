@@ -1,0 +1,273 @@
+<ProjectUsers PeerSharing="true">
+  <User UserName="Blesson Thomas NR" FirstUser="true">
+    <Role>None</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Bcs Malayalam 5 NR" FirstUser="false">
+    <Role>Administrator</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="GEN" />
+      <Book Id="EXO" />
+      <Book Id="LEV" />
+      <Book Id="NUM" />
+      <Book Id="DEU" />
+      <Book Id="JOS" />
+      <Book Id="JDG" />
+      <Book Id="RUT" />
+      <Book Id="1SA" />
+      <Book Id="2SA" />
+      <Book Id="1KI" />
+      <Book Id="2KI" />
+      <Book Id="1CH" />
+      <Book Id="2CH" />
+      <Book Id="EZR" />
+      <Book Id="NEH" />
+      <Book Id="EST" />
+      <Book Id="JOB" />
+      <Book Id="PSA" />
+      <Book Id="PRO" />
+      <Book Id="ECC" />
+      <Book Id="SNG" />
+      <Book Id="ISA" />
+      <Book Id="JER" />
+      <Book Id="LAM" />
+      <Book Id="EZK" />
+      <Book Id="DAN" />
+      <Book Id="HOS" />
+      <Book Id="JOL" />
+      <Book Id="AMO" />
+      <Book Id="OBA" />
+      <Book Id="JON" />
+      <Book Id="MIC" />
+      <Book Id="NAM" />
+      <Book Id="HAB" />
+      <Book Id="ZEP" />
+      <Book Id="HAG" />
+      <Book Id="ZEC" />
+      <Book Id="MAL" />
+    </Books>
+  </User>
+  <User UserName="Rijo Raju NR" FirstUser="false">
+    <Role>Administrator</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Arpan Christian NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Benjamin C Varghese" FirstUser="false">
+    <Role>Administrator</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="MAT" />
+    </Books>
+  </User>
+  <User UserName="Alex P John NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Jobby Prasannan" FirstUser="false">
+    <Role>Administrator</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Binu Alexander NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="MRK" />
+      <Book Id="MAT" />
+      <Book Id="LUK" />
+      <Book Id="JHN" />
+      <Book Id="ACT" />
+      <Book Id="ROM" />
+      <Book Id="1CO" />
+      <Book Id="2CO" />
+      <Book Id="GAL" />
+      <Book Id="EPH" />
+      <Book Id="PHP" />
+      <Book Id="COL" />
+      <Book Id="1TH" />
+      <Book Id="2TH" />
+      <Book Id="1TI" />
+      <Book Id="2TI" />
+      <Book Id="TIT" />
+      <Book Id="PHM" />
+      <Book Id="HEB" />
+      <Book Id="JAS" />
+      <Book Id="1PE" />
+      <Book Id="2PE" />
+      <Book Id="1JN" />
+      <Book Id="2JN" />
+      <Book Id="3JN" />
+      <Book Id="JUD" />
+      <Book Id="REV" />
+    </Books>
+  </User>
+  <User UserName="Thomas Mathew NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Vidyasagar Gaikwad NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>true</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Bcs Malayalam 4 NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="2PE" />
+      <Book Id="1JN" />
+      <Book Id="2JN" />
+      <Book Id="3JN" />
+      <Book Id="JUD" />
+      <Book Id="REV" />
+    </Books>
+  </User>
+  <User UserName="Bobby Chellappan NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Uma Johnson" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Nikhil Chandane NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Kiran Dhimal NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Bhojraj Bhatta NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Kishore Mandal NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Bhikkhu Rana NR" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Maniyel Masih" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Greg Curtis" FirstUser="false">
+    <Role>Observer</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Saroja Saru NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="ACT" />
+      <Book Id="ROM" />
+      <Book Id="1CO" />
+      <Book Id="2CO" />
+      <Book Id="GAL" />
+      <Book Id="EPH" />
+      <Book Id="PHP" />
+      <Book Id="COL" />
+      <Book Id="1TH" />
+      <Book Id="2TH" />
+      <Book Id="1TI" />
+      <Book Id="2TI" />
+      <Book Id="TIT" />
+      <Book Id="PHM" />
+      <Book Id="HEB" />
+      <Book Id="JAS" />
+      <Book Id="1PE" />
+      <Book Id="2PE" />
+      <Book Id="1JN" />
+      <Book Id="2JN" />
+      <Book Id="3JN" />
+      <Book Id="JUD" />
+    </Books>
+  </User>
+  <User UserName="Ebenezer David NR" FirstUser="false">
+    <Role>TeamMember</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="GLO" />
+    </Books>
+  </User>
+  <User UserName="Jobel Kurian NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Joshy Kurian NR" FirstUser="false">
+    <Role>Administrator</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="Mathews Kurian M NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="MAT" />
+      <Book Id="MRK" />
+      <Book Id="LUK" />
+      <Book Id="JHN" />
+      <Book Id="ACT" />
+      <Book Id="ROM" />
+      <Book Id="1CO" />
+      <Book Id="2CO" />
+      <Book Id="GAL" />
+      <Book Id="EPH" />
+      <Book Id="PHP" />
+      <Book Id="COL" />
+    </Books>
+  </User>
+  <User UserName="Shojo John NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+  <User UserName="John Scudder NR" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books>
+      <Book Id="1TI" />
+      <Book Id="2TI" />
+      <Book Id="TIT" />
+      <Book Id="PHM" />
+      <Book Id="HEB" />
+      <Book Id="JAS" />
+      <Book Id="1PE" />
+      <Book Id="2PE" />
+      <Book Id="1JN" />
+      <Book Id="2JN" />
+      <Book Id="3JN" />
+      <Book Id="JUD" />
+      <Book Id="REV" />
+      <Book Id="1TH" />
+      <Book Id="2TH" />
+    </Books>
+  </User>
+  <User UserName="John Mathai" FirstUser="false">
+    <Role>Consultant</Role>
+    <AllBooks>false</AllBooks>
+    <Books />
+  </User>
+</ProjectUsers>

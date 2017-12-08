@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommentList>
+  <Comment>
+    <Thread>a3adb2fe</Thread>
+    <User>Benjamin C Varghese</User>
+    <Date>2017-10-12T12:26:56.0099271+05:30</Date>
+    <VerseRef>LUK 19:38</VerseRef>
+    <SelectedText />
+    <StartPosition>11</StartPosition>
+    <ContextBefore>\v 38  \q1 </ContextBefore>
+    <ContextAfter>"धन्य है वह राजा, जो प्रभु</ContextAfter>
+    <Status>todo</Status>
+    <Type></Type>
+    <Language>Hindi</Language>
+    <Verse>\v 38 \q1 "धन्य है वह राजा, जो प्रभु के नाम से \q2 आता है! \q1 स्वर्ग में शान्ति और आकाश में \q2 महिमा हो!" (भज. 72:18-19, भज. 118:26) \p </Verse>
+    <Field Name="replyto">Jobby Prasannan</Field>
+    <Field Name="assigned">Jobby Prasannan</Field>
+    <Contents>please move the verse number after \q1. So it should look like \q1 \v 38 “धन्य है </Contents>
+  </Comment>
+  <Comment>
+    <Thread>a3adb2fe</Thread>
+    <User>Benjamin C Varghese</User>
+    <Date>2017-10-12T12:46:00.5709973+05:30</Date>
+    <VerseRef>LUK 19:38</VerseRef>
+    <SelectedText />
+    <StartPosition>11</StartPosition>
+    <ContextBefore>\v 38  \q1 </ContextBefore>
+    <ContextAfter>"धन्य है वह राजा, जो प्रभु</ContextAfter>
+    <Status></Status>
+    <Type></Type>
+    <Language>Hindi</Language>
+    <Verse />
+    <Contents>
+      <p>I see two more issues here</p>
+      <p>1. Straight quote (" instead of “)</p>
+      <p>2. \q2 is on an incorrect position. The quote levels are often used to emphasise the contrast or a supporting statement. So normally it will come at the start of a clause.</p>
+    </Contents>
+  </Comment>
+</CommentList>
