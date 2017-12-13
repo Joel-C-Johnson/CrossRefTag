@@ -21,6 +21,10 @@ parts/
 sdist/
 var/
 wheels/
+CrossRefTag/HiiData
+CrossRefTag/parallelProcessing.py
+CrossRefTag/test1.py
+CrossRefTag/test2.py
 *.egg-info/
 .installed.cfg
 *.egg
