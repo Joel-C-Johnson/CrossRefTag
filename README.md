@@ -1,6 +1,6 @@
 # CrossRefTag
 
-To create cross-references and chain Bibles by using the Biblical Terms information from ParaTExt. This tool will attempt to automatically add cross-refences or footnotes for Biblical Terms by using the information available on the Biblical Terms in a ParaTExt project.
+To create `Cross-references` and `Chain Reference` Bibles by using the Biblical Terms information from [ParaTExt](www.paratext.org). This tool will attempt to automatically add cross-refences or footnotes for Biblical Terms by using the information available on the Biblical Terms in a ParaTExt project.
 
 This tool can be incorporated in to ParaTExt as a check (cms) or as a command line tool.
 
