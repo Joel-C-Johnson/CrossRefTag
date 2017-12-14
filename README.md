@@ -14,9 +14,9 @@ This tool can be incorporated in to ParaTExt as a check (cms) or as a command li
 ParaTExt Biblical Terms information is stored in two files.
 
 1. BiblicalTerms[i]ProjectCode[/i].xml
-- This file has the Biblical Terms and it's renderings in the vernacular project.
+    - This file has the Biblical Terms and it's renderings in the vernacular project.
 1. ProjectBiblicalTerms.xml
-- This file is static across all project (but the content may vary depending on the Biblical Term selected for the project). It has the Biblical Terms and the list of places it occur (this information is stored in a cryptic manner)
+    - This file is static across all project (but the content may vary depending on the Biblical Term selected for the project). It has the Biblical Terms and the list of places it occur (this information is stored in a cryptic manner)
 
 CrossRefTag will combine these files to determine the Biblical Terms entries for the project and then try to use that info to update the USFM files with the cross references. 
 
