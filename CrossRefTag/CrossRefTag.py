@@ -99,75 +99,44 @@ def verse_handler(code, verse):
     final_verse = '\\v ' + str(verse_num) + ' ' + verse
     return final_verse
 
-# def add_tags(verse_code, verse):
-#     'returns a text with the tags added to it.'
-    
-#     punct_handler = re.sub(r'\s([' + string.punctuation +'])', r'SPT\1', verse)
-#     punct_handler = re.sub(r'([' + string.punctuation +'])\s', r'\1SPT', punct_handler)
-#     punct_handler = re.sub(r'([' + string.punctuation +'])', r' \1 ', punct_handler)  #SPT is a marker
-#     word_list = nltk.word_tokenize(punct_handler)
-#     main_word_list = []
-#     for wi in word_list:
-#         if verse_code not in main_dict:
-#             main_word_list.append(wi)
-#         else:
-#             for k, v in main_dict[verse_code].items():
-#                 tranlsation_words = check_pattern(wi, v)    #Recieves all the available translations/interpretations of the word, if any.
-#                 if tranlsation_words:
-#                     verse_text = wi + tag_format(verse_code, term_reference_dict[k]) #wi is the actual word and tag_format() returns a text with information of the previous and next occurences.
-#                     main_word_list.append(verse_text)
-#                     break
-#                 else:
-#                     main_word_list.append(wi)
-#                     break
-#     join_main_word_list = " ".join(main_word_list)
-#     main_word_text = re.sub(r"``", '"', join_main_word_list)
-#     main_word_text = re.sub(r'\s([' + string.punctuation + '])\s', r'\1', main_word_text)
-#     main_word_text = re.sub(r'SPT', ' ', main_word_text)
-#     # print (main_word_text)
-#     return main_word_text
-
-#******************************************************************
-
 def add_tags(verse_code_tuple, verse):
-        'returns a text with the tags added to it.'
-        # print (verse_code_tuple)
-        punct_handler = re.sub(r'\s([' + string.punctuation +'])', r'SPT\1', verse)
-        punct_handler = re.sub(r'([' + string.punctuation +'])\s', r'\1SPT', punct_handler)
-        punct_handler = re.sub(r'([' + string.punctuation +'])', r' \1 ', punct_handler)  #SPT is a marker
-        word_list = nltk.word_tokenize(punct_handler)
-        main_word_list = []
-        verse_code_length = int(verse_code_tuple[1]) + 1
-        verse_code = verse_code_tuple[0]
-        # pdb.set_trace()
-        temp_word_dict = {}
-        for i in range(0, int(verse_code_length)):
-            temp_verse_code = '0' + str(int(verse_code) + i)
-            if temp_verse_code in main_dict:
-                for k, v in main_dict[temp_verse_code].items():
-                    temp_word_dict[k] = v
-        # print (temp_word_dict)
-        for wi in word_list:
-            if verse_code not in main_dict:
-                main_word_list.append(wi)
+    '''Recieves a tuple with verse code and number(string) and the verse as 
+    argumenats Each word in the verse is looked up against a list of the bible 
+    terms of that specific verse for a match and returns a text with the chain 
+    reference formatted tags added to it.'''
+    punct_handler = re.sub(r'\s([' + string.punctuation +'])', r'SPT\1', verse)
+    punct_handler = re.sub(r'([' + string.punctuation +'])\s', r'\1SPT', punct_handler)
+    punct_handler = re.sub(r'([' + string.punctuation +'])', r' \1 ', punct_handler)  #SPT is a marker
+    word_list = nltk.word_tokenize(punct_handler)
+    main_word_list = []
+    verse_code_length = int(verse_code_tuple[1]) + 1
+    verse_code = verse_code_tuple[0]
+    book_code = verse_code[0:3]
+    chapter_code = verse_code[3:6]
+    refer_code = verse_code[6:9]
+    verse_code_list = []
+    for i in range(0, verse_code_length):
+        current_value = book_code + chapter_code + digit_lenght_check(str(int(refer_code) + i)) + '00'
+        verse_code_list.append(current_value)
+    for word in word_list:
+        word_list_len = len(main_word_list)
+        for v_code in verse_code_list:
+            if v_code not in main_dict:
+                continue
             else:
-                for k, v in temp_word_dict.items():
-                    tranlsation_words = check_pattern(wi, v)    #Recieves all the available translations/interpretations of the word, if any.
-                    if tranlsation_words:
-                        verse_text = wi + tag_format(verse_code, term_reference_dict[k]) #wi is the actual word and tag_format() returns a text with information of the previous and next occurences.
+                for k, v in main_dict[v_code].items():
+                    translation_check = check_pattern(word, v)
+                    if translation_check:
+                        verse_text = word + tag_format(v_code, term_reference_dict[k])
                         main_word_list.append(verse_text)
                         break
-                    else:
-                        main_word_list.append(wi)
-                        break
-        join_main_word_list = " ".join(main_word_list)
-        main_word_text = re.sub(r"``", '"', join_main_word_list)
-        main_word_text = re.sub(r'\s([' + string.punctuation + '])\s', r'\1', main_word_text)
-        main_word_text = re.sub(r'SPT', ' ', main_word_text)
-        # print (main_word_text)
-        return main_word_text
-
-    #*******************************************************************8
+        if len(main_word_list) == word_list_len:
+            main_word_list.append(word)
+    join_main_word_list = " ".join(main_word_list)
+    main_word_text = re.sub(r"``", '"', join_main_word_list)
+    main_word_text = re.sub(r'\s([' + string.punctuation + '])\s', r'\1', main_word_text)
+    main_word_text = re.sub(r'SPT', ' ', main_word_text)
+    return main_word_text
 
 def usfm_handler(filename):
     'To process the usfm files'
@@ -178,9 +147,9 @@ def usfm_handler(filename):
     book_name = re.search('(?<=\id )\w{3}', file_text).group(0)
     book_num = books_inverse[book_name]
     book_code = digit_lenght_check(book_num)
-    file_text = re.sub('\*', 'asterix', file_text)  #Needs handling ************
-    file_text = re.sub('\(', 'opening_bracket', file_text)  #Needs handling ************
-    file_text = re.sub('\)', 'closing_bracket', file_text)  #Needs handling ************
+    file_text = re.sub('\*', 'asterix', file_text)
+    file_text = re.sub('\(', 'opening_bracket', file_text) 
+    file_text = re.sub('\)', 'closing_bracket', file_text) 
     split_usfm = file_text.split('\\c')
     i = 0
     for chapter_text in split_usfm:
@@ -195,18 +164,13 @@ def usfm_handler(filename):
             verse_pattern = re.compile(r'(\\v )(\d+)(.*)')
             verse_pattern2 = re.compile(r'(\\v )(\d+)[abcd]?-(\d+)[abcd]?')
             split_text = chapter_text.split('\\v')
-            # print (split_text[1])
             main_text_list.append(split_text.pop(0))
-            # print (split_text.pop())
-            # print (split_text[1])
             for line in split_text:
                 
                 other_filter_pattern = re.compile(r'\n(\\)(.*)')
                 line = re.sub(other_filter_pattern, r'SPTnewlineslSPT\2', line)
                 line = "\\v" + line
-                # print (line)
                 result = re.match(verse_pattern, line)
-                # pdb.set_trace()
                 if result:
                     verse = result.group(3)
                     hypen_verse = re.match(verse_pattern2, line)
@@ -229,7 +193,7 @@ def usfm_handler(filename):
     final_text = re.sub('opening_bracket', r'(', final_text)
     final_text = re.sub('closing_bracket', r')', final_text)
     final_text = re.sub(' newlinesl ', r'\n\\', final_text)
-
+    final_text = re.sub(r'\\v (\d+) - (\d+)', r'\\v \1-\2', final_text)
     final_text = re.sub('asterix', '*', final_text) 
     open_file = open('output' + str(filename), 'w')
     open_file.write(final_text)
