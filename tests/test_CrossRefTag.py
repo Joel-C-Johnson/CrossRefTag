@@ -20,7 +20,7 @@ def test_answer4():
     assert  cs.verse_handler(code,verse_list) == '\\v 1 00100500100'
 #----------------------------------------------------------------------------------#
 def test_answer5():
-    verse_code_tuple = (00100500100, 0)
+    verse_code_tuple = ('00100500100', 0)
     verse = 'God is love'
     assert  cs.add_tags(verse_code_tuple, verse)
 #----------------------------------------------------------------------------------#
