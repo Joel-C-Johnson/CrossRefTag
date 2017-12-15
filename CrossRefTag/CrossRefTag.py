@@ -5,6 +5,11 @@ import string
 import nltk
 import pdb
 import glob
+from joblib import Parallel, delayed
+import time
+import sys
+import os
+
 
 tree1 = ET.parse('ProjectBiblicalTerms.xml')
 root1 = tree1.getroot()
@@ -94,7 +99,7 @@ def tag_format(code, verse_list):
         next_code = books[str(int(verse_list[next_index][0:3]))] + ' ' + str(int(verse_list[next_index][3:6])) + ':' + str(int(verse_list[next_index][6:9]))
     else:
         next_code = ''
-    formatted = "\\f + \\fr " + str(current_code) +" \\ft Previous: " + str(previous_code) + "; Next: " + str(next_code) + "\\ft*"
+    formatted = "\\fSPT+SPT\\fr " + str(current_code) +" \\ft Previous: " + str(previous_code) + "; Next: " + str(next_code) + "\\ft*"
     return formatted
 
 def verse_handler(code, verse):
@@ -124,6 +129,9 @@ def add_tags(verse_code_tuple, verse):
         verse_code_list.append(current_value)
     for word in word_list:
         word_list_len = len(main_word_list)
+        if word in string.punctuation:
+            main_word_list.append(word)
+            continue
         for v_code in verse_code_list:
             if v_code not in main_dict:
                 continue
@@ -151,12 +159,6 @@ def usfm_handler(filename):
     book_name = re.search('(?<=\id )\w{3}', file_text).group(0)
     book_num = books_inverse[book_name]
     book_code = digit_lenght_check(book_num)
-    file_text = re.sub('\*', 'asterix', file_text)
-    file_text = re.sub('\?', 'questionmark', file_text)
-    file_text = re.sub('\(', 'opening_bracket', file_text) 
-    file_text = re.sub('\)', 'closing_bracket', file_text)
-    file_text = re.sub('\[', 'openingsquarebracket', file_text)
-    file_text = re.sub('\]', 'closingsquarebracket', file_text)
     split_usfm = file_text.split('\\c')
     i = 0
     for chapter_text in split_usfm:
@@ -196,18 +198,16 @@ def usfm_handler(filename):
                 else:
                     main_text_list.append(line)
     final_text = "\n".join(main_text_list)
-    final_text = re.sub('opening_bracket', r'(', final_text)
-    final_text = re.sub('closing_bracket', r')', final_text)
     final_text = re.sub(' newlinesl ', r'\n\\', final_text)
     final_text = re.sub(r'\\v (\d+) - (\d+)', r'\\v \1-\2', final_text)
-    final_text = re.sub('asterix', '*', final_text)
-    final_text = re.sub('questionmark', '?', final_text)
-    file_text = re.sub('openingsquarebracket', '[', file_text)
-    file_text = re.sub('closingsquarebracket', ']', file_text)
     open_file = open('output/' + str(filename), 'w')
     open_file.write(final_text)
     return 'finished'
 
-for filename in glob.glob('usfmfiles/*.SFM'):
-    usfm_handler(filename)
+def start():
+    now = time.time()
+    j = Parallel(n_jobs=4, verbose=1, backend="multiprocessing") (delayed (usfm_handler)(filename) for filename in glob.glob('usfmfiles/*.SFM') )
+    print ("Finished in", time.time()-now , "sec")
 
+if __name__ == '__main__':
+    start()
