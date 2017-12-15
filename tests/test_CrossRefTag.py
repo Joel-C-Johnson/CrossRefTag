@@ -2,8 +2,8 @@ import CrossRefTag as cs
 
 
 def test_answer():
-    wd = 'cat'
-    list1 = ['man','lion']
+    wd = 'obey'
+    list1 = ['man','love']
     assert cs.check_pattern(wd, list1)==None
 #----------------------------------------------------------------------------------#
 def test_answer1():
