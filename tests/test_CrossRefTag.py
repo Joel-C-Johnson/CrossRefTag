@@ -12,16 +12,18 @@ def test_answer1():
 def test_answer3():
     code = '00100500100'
     verse_list = ['00100500100']
-    assert  cs.tag_format(code,verse_list) == 00
+    assert  cs.tag_format(code,verse_list) == '\\fSPT+SPT\\fr 5:1 \\ft Previous: ; Next: \\ft*'
 #----------------------------------------------------------------------------------#
-#
-# def verse_handler(code, verse):
-#     'Returns a string back starting in the format "\\v (digit)"'
-#     verse_num = str(int(code[6:9]))
-#     final_verse = '\\v ' + str(verse_num) + ' ' + verse
-#     return final_verse
-#
-# def test_answer4():
-#     code = '00100500100'
-#     verse_list = '00100500100'
-#     assert  verse_handler(code,verse_list) == '\\v 1 00100500100'
+def test_answer4():
+    code = '00100500100'
+    verse_list = '00100500100'
+    assert  cs.verse_handler(code,verse_list) == '\\v 1 00100500100'
+#----------------------------------------------------------------------------------#
+def test_answer5():
+    verse_code_tuple = (00100500100, 0)
+    verse = 'God is love'
+    assert  cs.add_tags(verse_code_tuple, verse)
+#----------------------------------------------------------------------------------#
+def test_answer6():
+    filename = '02EXOHii.SFM'
+    assert  cs.usfm_handler(filename)
