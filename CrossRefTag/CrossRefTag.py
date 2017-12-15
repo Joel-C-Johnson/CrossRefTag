@@ -4,6 +4,7 @@ import re
 import string
 import nltk
 import pdb
+import glob
 
 tree1 = ET.parse('ProjectBiblicalTerms.xml')
 root1 = tree1.getroot()
@@ -42,7 +43,7 @@ for t in root1.findall('Term'):
             main_dict[verse_code] = temp_dict
     term_reference_dict[word] = term_reference_list
 
-books = {"1": "GEN", "2": "EXO", "3": "LEV", "4": "NUM", "5": "DEU", "6": "JOS", "7": "JDG", "8": "RTH", "9": "1SA", "10": "2SA", "11": "1KI", "12": "2KI", "13": "1CH", "14": "2CH", "15": "EZR", "16": "NEH", "17": "EST", "18": "JOB", "19": "PSA", "20": "PRO", "21": "ECC", "22": "SNG", "23": "ISA", "24": "JER", "25": "LAM", "26": "EZE", "27": "DAN", "28": "HOS", "29": "JOE", "30": "AMO", "31": "OBA", "32": "JON", "33": "MIC", "34": "NAH", "35": "HAB", "36": "ZEP", "37": "HAG", "38": "ZEC", "39": "MAL", "40": "MAT", "41": "MAR", "42": "LUK", "43": "JHN", "44": "ACT", "45": "ROM", "46": "1CO", "47": "2CO", "48": "GAL", "49": "EPH", "50": "PHL", "51": "COL", "52": "1TH", "53": "2TH", "54": "1TI", "55": "2TI", "56": "TIT", "57": "PHM", "58": "HEB", "59": "JAS", "60": "1PE", "61": "2PE", "62": "1JO", "63": "2JO", "64": "3JO", "65": "JUD", "66": "REV"}
+books = {"1": "GEN", "2": "EXO", "3": "LEV", "4": "NUM", "5": "DEU", "6": "JOS", "7": "JDG", "8": "RUT", "9": "1SA", "10": "2SA", "11": "1KI", "12": "2KI", "13": "1CH", "14": "2CH", "15": "EZR", "16": "NEH", "17": "EST", "18": "JOB", "19": "PSA", "20": "PRO", "21": "ECC", "22": "SNG", "23": "ISA", "24": "JER", "25": "LAM", "26": "EZK", "27": "DAN", "28": "HOS", "29": "JOL", "30": "AMO", "31": "OBA", "32": "JON", "33": "MIC", "34": "NAM", "35": "HAB", "36": "ZEP", "37": "HAG", "38": "ZEC", "39": "MAL", "40": "MAT", "41": "MRK", "42": "LUK", "43": "JHN", "44": "ACT", "45": "ROM", "46": "1CO", "47": "2CO", "48": "GAL", "49": "EPH", "50": "PHP", "51": "COL", "52": "1TH", "53": "2TH", "54": "1TI", "55": "2TI", "56": "TIT", "57": "PHM", "58": "HEB", "59": "JAS", "60": "1PE", "61": "2PE", "62": "1JN", "63": "2JN", "64": "3JN", "65": "JUD", "66": "REV"}
 books_inverse = {v:k for k,v in books.items()} 
 
 def check_pattern(tr_word, tr_wordlist):
@@ -71,7 +72,10 @@ def tag_format(code, verse_list):
     next_index = None
     if code in verse_list:
         index_value = verse_list.index(code)
-        if index_value == 0:
+        if len(verse_list) == 1:
+            previous_index = None
+            next_index = None
+        elif index_value == 0:
             next_index = index_value + 1
         elif index_value > 0 and (index_value + 1) == len(verse_list):
             previous_index = index_value - 1
@@ -148,8 +152,11 @@ def usfm_handler(filename):
     book_num = books_inverse[book_name]
     book_code = digit_lenght_check(book_num)
     file_text = re.sub('\*', 'asterix', file_text)
+    file_text = re.sub('\?', 'questionmark', file_text)
     file_text = re.sub('\(', 'opening_bracket', file_text) 
-    file_text = re.sub('\)', 'closing_bracket', file_text) 
+    file_text = re.sub('\)', 'closing_bracket', file_text)
+    file_text = re.sub('\[', 'openingsquarebracket', file_text)
+    file_text = re.sub('\]', 'closingsquarebracket', file_text)
     split_usfm = file_text.split('\\c')
     i = 0
     for chapter_text in split_usfm:
@@ -179,8 +186,7 @@ def usfm_handler(filename):
                         len_reference_code = int(hypen_verse.group(3)) - int(hypen_verse.group(2))
                         first_verse = str(book_code) + str(chapter_code) + digit_lenght_check(hypen_verse.group(2)) + '00'
                         verse_code = (first_verse, str(len_reference_code))
-                        print (verse_code)
-                    else: #re.match(reference_pattern1, line):
+                    else:
                         reference_code = digit_lenght_check(result.group(2))
                         verse_sub = re.sub(verse_pattern, r'' + str(book_code) + str(chapter_code) + str(reference_code) + '00' + str(verse), line)
                         verse_code = (verse_sub[0:11], '0')
@@ -194,9 +200,14 @@ def usfm_handler(filename):
     final_text = re.sub('closing_bracket', r')', final_text)
     final_text = re.sub(' newlinesl ', r'\n\\', final_text)
     final_text = re.sub(r'\\v (\d+) - (\d+)', r'\\v \1-\2', final_text)
-    final_text = re.sub('asterix', '*', final_text) 
-    open_file = open('output' + str(filename), 'w')
+    final_text = re.sub('asterix', '*', final_text)
+    final_text = re.sub('questionmark', '?', final_text)
+    file_text = re.sub('openingsquarebracket', '[', file_text)
+    file_text = re.sub('closingsquarebracket', ']', file_text)
+    open_file = open('output/' + str(filename), 'w')
     open_file.write(final_text)
     return 'finished'
 
-usfm_handler('66_JUD-OA-HIN.usfm')
+for filename in glob.glob('usfmfiles/*.SFM'):
+    usfm_handler(filename)
+
